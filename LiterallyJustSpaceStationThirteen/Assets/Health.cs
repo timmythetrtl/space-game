@@ -14,7 +14,7 @@ public class Health : MonoBehaviour
     [SerializeField] public float armR_health= 100;
     [SerializeField] public float head_health= 100;
     [SerializeField] public float torso_health= 100;
-    [SerializeField] private float health= 100 
+    [SerializeField] private float health= 100; 
     private float health_Current;
 
     #endregion
@@ -47,32 +47,32 @@ public class Health : MonoBehaviour
         }
     }
 
-    public void TakeDamage(String bodyPart, float damage_Amount)
+    public void TakeDamage(string bodyPart, float damage_Amount)
     {
         switch(bodyPart){
             case "legL":
-                health_Current+ -= damage_Amount;
+                health_Current -= damage_Amount;
                 break;
             case "legR":
-                health_Current+ -= damage_Amount;
+                health_Current -= damage_Amount;
                 break;
             case "eyeL":
-                health_Current+ -= damage_Amount;
+                health_Current -= damage_Amount;
                 break;
             case "eyeR":
-                health_Current+ -= damage_Amount;
+                health_Current -= damage_Amount;
                 break;
             case "armL":
-                health_Current+ -= damage_Amount;
+                health_Current -= damage_Amount;
                 break;
             case "armR":
-                health_Current+ -= damage_Amount;
+                health_Current -= damage_Amount;
                 break;
             case "head":
-                health_Current+ -= damage_Amount;
+                health_Current -= damage_Amount;
                 break;
             case "torso":
-                health_Current+ -= damage_Amount;
+                health_Current -= damage_Amount;
                 break;
             default:
                 print("ERROR: NONEXISTENT BODY PART");
