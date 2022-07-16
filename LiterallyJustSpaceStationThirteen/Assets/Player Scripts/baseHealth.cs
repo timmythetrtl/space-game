@@ -3,21 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Health : MonoBehaviour 
+public class baseHealth : MonoBehaviour 
 {
 
     #region Properties
     [SerializeField] private float health= 100; 
+    private float healthCurrent;
 
     public static event Action playerDeath;
-    public static event Action legLDamage;
-    public static event Action legRDamage;
-    public static event Action eyeLDamage;
-    public static event Action eyeRDamage;
-    public static event Action armLDamage;
-    public static event Action armRDamage;
-    public static event Action headDamage;
-    public static event Action torsoDamage;
+    public static event Action<float> legLDamage;
+    public static event Action<float> legRDamage;
+    public static event Action<float> eyeLDamage;
+    public static event Action<float> eyeRDamage;
+    public static event Action<float> armLDamage;
+    public static event Action<float> armRDamage;
+    public static event Action<float> headDamage;
+    public static event Action<float> torsoDamage;
 
     #endregion
 
@@ -26,11 +27,11 @@ public class Health : MonoBehaviour
     void Start()
     {
         // Initialiase the player's current health
-        ResetHealth();
+        resetHealth();
     }
 
         // Sets the player's current health back to its initial value
-    public void ResetHealth()
+    private void resetHealth()
     {
         // Initialise the player's current health
         healthCurrent = health;
@@ -45,11 +46,11 @@ public class Health : MonoBehaviour
         if (healthCurrent > health)
         {
             // Reset the player's current health
-            ResetHealth();
+            resetHealth();
         }
     }
 
-    public void TakeDamage(string bodyPart, float damageAmount)
+    public void TakeDamage(string bodyPart, float damageAmount, float limbDamage)
     {
 
         if (damageAmount <= 0)
@@ -58,36 +59,36 @@ public class Health : MonoBehaviour
         switch(bodyPart)
         {
             case "legL":
-                legLDamage?.Invoke();
+                legLDamage?.Invoke(limbDamage);
                 healthCurrent -= damageAmount;
                 break;
             case "legR":
                 healthCurrent -= damageAmount;
-                legLDamageR.Invoke();
+                legLDamage.Invoke(limbDamage);
                 break;
             case "eyeL":
                 healthCurrent -= damageAmount;
-                eyeLDamage?.Invoke();
+                eyeLDamage?.Invoke(limbDamage);
                 break;
             case "eyeR":
                 healthCurrent -= damageAmount;
-                eyeRDamage?.Invoke();
+                eyeRDamage?.Invoke(limbDamage);
                 break;
             case "armL":
                 healthCurrent -= damageAmount;
-                armLDamage?.Invoke();
+                armLDamage?.Invoke(limbDamage);
                 break;
             case "armR":
                 healthCurrent -= damageAmount;
-                armRDamage?.Invoke();
+                armRDamage?.Invoke(limbDamage);
                 break;
             case "head":
                 healthCurrent -= damageAmount;
-                headDamage?.Invoke()
+                headDamage?.Invoke(limbDamage);
                 break;
             case "torso":
                 healthCurrent -= damageAmount;
-                torsoDamage?.Invoke();
+                torsoDamage?.Invoke(limbDamage);
                 break;
             default:
                 print("ERROR: NONEXISTENT BODY PART");
@@ -102,7 +103,7 @@ public class Health : MonoBehaviour
 
     }
 
-    private void Die()
+    public void Die()
     {
         Destroy(this.gameObject);
         playerDeath?.Invoke();
