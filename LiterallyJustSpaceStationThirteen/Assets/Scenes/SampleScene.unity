@@ -735,6 +735,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11dac37cf5ec58f4aac883d6913f851d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 100
 --- !u!1 &912056827
 GameObject:
   m_ObjectHideFlags: 0
@@ -2371,6 +2372,26 @@ PrefabInstance:
     - target: {fileID: 1280865850709201920, guid: 2f45ea0b53e34b842888d7d5edadf20d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1280865850709201922, guid: 2f45ea0b53e34b842888d7d5edadf20d, type: 3}
+      propertyPath: jumpForce
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1280865850709201922, guid: 2f45ea0b53e34b842888d7d5edadf20d, type: 3}
+      propertyPath: walkSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1280865850709201922, guid: 2f45ea0b53e34b842888d7d5edadf20d, type: 3}
+      propertyPath: crouchSpeed
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1280865850709201922, guid: 2f45ea0b53e34b842888d7d5edadf20d, type: 3}
+      propertyPath: sprintSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1280865850709201922, guid: 2f45ea0b53e34b842888d7d5edadf20d, type: 3}
+      propertyPath: crouchYScale
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1280865850709201927, guid: 2f45ea0b53e34b842888d7d5edadf20d, type: 3}
       propertyPath: m_Name
