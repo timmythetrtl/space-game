@@ -35,9 +35,6 @@ public class PlayerMovementTutorial : MonoBehaviour
 
     Rigidbody rb;
 
-    private int legR = 0;
-    private int legL = 0;
-
     private Legs legs;
 
     private void Start()
@@ -52,8 +49,7 @@ public class PlayerMovementTutorial : MonoBehaviour
     {
 
         legs = GetComponent<Legs>();
-        legL = legs.legL;
-        legR = legs.legR;
+
         // ground check
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, whatIsGround);
 
@@ -95,11 +91,11 @@ public class PlayerMovementTutorial : MonoBehaviour
 
         // on ground
         if(grounded)
-            rb.AddForce(moveDirection.normalized * (moveSpeed-legR-legL) * 10f, ForceMode.Force);
+            rb.AddForce(moveDirection.normalized * (moveSpeed-legs.legR-legs.legL) * 10f, ForceMode.Force);
 
         // in air
         else if(!grounded)
-            rb.AddForce(moveDirection.normalized * (moveSpeed - legR - legL) * 10f * airMultiplier, ForceMode.Force);
+            rb.AddForce(moveDirection.normalized * (moveSpeed - legs.legR - legs.legL) * 10f * airMultiplier, ForceMode.Force);
     }
 
     private void SpeedControl()
@@ -107,9 +103,9 @@ public class PlayerMovementTutorial : MonoBehaviour
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
         // limit velocity if needed
-        if(flatVel.magnitude > (moveSpeed - legR - legL))
+        if(flatVel.magnitude > (moveSpeed - legs.legR-legs.legL))
         {
-            Vector3 limitedVel = flatVel.normalized * (moveSpeed - legR - legL);
+            Vector3 limitedVel = flatVel.normalized * (moveSpeed - legs.legR-legs.legL);
             rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
         }
     }
