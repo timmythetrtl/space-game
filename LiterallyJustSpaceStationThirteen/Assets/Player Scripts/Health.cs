@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,8 @@ public class Health : MonoBehaviour
     [SerializeField] public float torso_health= 100;
     [SerializeField] private float health= 100; 
     private float health_Current;
+
+    public static event Action playerDeath;
 
     #endregion
 
@@ -84,10 +87,8 @@ public class Health : MonoBehaviour
         {
             // Kill the player
             Destroy(this.gameObject);
+            playerDeath?.Invoke();
 
-            // NB: Here, you may want to restart the game
-            // (e.g. by informing your game manager that the player has died,
-            // or by raising an event using your event system)
         }
     }
     #endregion
