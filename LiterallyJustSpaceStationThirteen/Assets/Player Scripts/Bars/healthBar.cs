@@ -6,20 +6,39 @@ using UnityEngine.UI;
 public class healthBar : MonoBehaviour
 {
     private Image HealthBar;
-    public float CurrentHealth;
+    public float currentHealthBar
+    {
+        get {return _currentHealthBar;}
+        set {_currentHealthBar = Mathf.Clamp(value, -100, 100);}
+    }
+    [SerializeField, Range(-100, 100)] private float _currentHealthBar;
     private float MaxHealth = 100f;
-    baseHealth Player;
 
     void Start()
     {
         HealthBar = GetComponent<Image>();
-        Player = FindObjectOfType<baseHealth>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void onEnable()
     {
-        CurrentHealth = Player.healthCurrent;
-        HealthBar.fillAmount = CurrentHealth / MaxHealth;
+        baseHealth.healthPctDamage += lowerHealthBar;
+        baseHealth.healthPctHeal += raiseHealthBar;
+    } 
+
+    void onDisable()
+    {
+        baseHealth.healthPctDamage -= lowerHealthBar;
+        baseHealth.healthPctHeal += raiseHealthBar;
     }
+
+    private void lowerHealthBar(float low)
+    {
+        HealthBar.fillAmount = currentHealthBar - low;
+    }
+
+    private void raiseHealthBar(float raise)
+    {
+        HealthBar.fillAmount = currentHealthBar + raise;
+    }
+
 }

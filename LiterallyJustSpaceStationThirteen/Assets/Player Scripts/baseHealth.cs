@@ -11,6 +11,8 @@ public class baseHealth : MonoBehaviour
     [SerializeField] public float startingHealth = 100; 
     [SerializeField] public float healthCurrent;
 
+    public static event Action<float> healthPctDamage;
+    public static event Action<float> healthPctHeal;
     public static event Action hardIncap;
     public static event Action softIncap;
     public static event Action softIncapOff;
@@ -28,6 +30,7 @@ public class baseHealth : MonoBehaviour
     {
         // Initialiase the player's current health
         resetHealth();
+        
     }
 
         // Sets the player's current health back to its initial value
@@ -44,6 +47,7 @@ public class baseHealth : MonoBehaviour
     public void Heal(int healAmount)
     {
         healthCurrent += healAmount;
+        healthPctHeal?.Invoke(healAmount);
         if (healthCurrent > startingHealth)
         {
             // Reset the player's current health
@@ -57,7 +61,7 @@ public class baseHealth : MonoBehaviour
         playerDeath?.Invoke();
     }
 
-    public void TakeDamage(string bodyPart, float damageAmount)
+    public void takeDamage(string bodyPart, float damageAmount)
     {
         partName?.Invoke(bodyPart);
 
@@ -69,6 +73,8 @@ public class baseHealth : MonoBehaviour
         {
             healthCurrent -= damageAmount;
             partDamage?.Invoke(damageAmount);
+            healthPctDamage?.Invoke(damageAmount);
+            print("Damaged Player");
         }
     
 
