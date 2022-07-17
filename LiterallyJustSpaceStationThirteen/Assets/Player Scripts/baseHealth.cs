@@ -89,7 +89,8 @@ public class baseHealth : MonoBehaviour
 
     void Update()
     {
-        //this is for testing
+        //This code is for testing
+        /*
         if (healthCurrent <= 0 && healthCurrent > -50)
         {
             hardIncapOff?.Invoke();
@@ -106,7 +107,7 @@ public class baseHealth : MonoBehaviour
             Die();
             print("Player Died!");
         }   
-        
+        */
     }
 }
 

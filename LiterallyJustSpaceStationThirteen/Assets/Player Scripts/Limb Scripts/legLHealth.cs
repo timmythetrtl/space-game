@@ -20,7 +20,6 @@ public class legLHealth : MonoBehaviour
 
     private void resetHealth()
     {
-        // Initialise the player's limb current health
         legLHealthCurrent = baseLegLHealth;
     }
 
@@ -46,7 +45,7 @@ public class legLHealth : MonoBehaviour
     private void takeLLegDamage(float legL)
     {
         
-        if (validTarget = true)
+        if (validTarget == true)
         {
             legLHealthCurrent -= legL;
             validTarget = false;
@@ -54,5 +53,4 @@ public class legLHealth : MonoBehaviour
             
     }
     
-
 }
