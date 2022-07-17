@@ -111,7 +111,6 @@ public class baseHealth : MonoBehaviour
     }
     #endregion
 
-<<<<<<< HEAD
     void Update()
     {
         if (healthCurrent <= -100 && healthCurrent>= -199) 
@@ -120,7 +119,5 @@ public class baseHealth : MonoBehaviour
             if (randomInt <= 25)
                 Die();
         }
-=======
->>>>>>> parent of 8f7cd36 (merge)
     }
-
+}
