@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class baseHealth : MonoBehaviour 
 {
@@ -19,11 +20,6 @@ public class baseHealth : MonoBehaviour
     public static event Action<float> armRDamage;
     public static event Action<float> headDamage;
     public static event Action<float> torsoDamage;
-
-    void Start()
-    {
-        mustUpdate = false;
-    }
 
     #endregion
 
@@ -117,12 +113,11 @@ public class baseHealth : MonoBehaviour
 
     void Update()
     {
-        if (healthCurrent <= -100 and >= -199)
+        if (healthCurrent <= -100 && healthCurrent>= -199) 
         {
-            Random random = new Random();
-            int randomNumber = random.Next(0, 100);
-                if (randomNumber <= 25)
-                    Die();
+            int randomInt = Random.Range(0, 100);
+            if (randomInt <= 25)
+                Die();
         }
     }
 

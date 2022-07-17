@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class legLHealth : MonoBehaviour
 {
-    {
+    
     [SerializeField] private float baseLegLHealth = 100;
     private float legLHealthCurrent;
     private bool legLState = true;
@@ -38,5 +38,5 @@ public class legLHealth : MonoBehaviour
             return;
         legLHealthCurrent -= legL;
     }
-}
+
 }
