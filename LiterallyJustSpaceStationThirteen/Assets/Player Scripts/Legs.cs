@@ -2,8 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class armRHealth : MonoBehaviour
+public class Legs : MonoBehaviour
 {
+
+    public int legL = 0;
+    public int legR = 0;
+
     // Start is called before the first frame update
     void Start()
     {

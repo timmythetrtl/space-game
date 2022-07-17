@@ -1,17 +1,12 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class armLHealth : MonoBehaviour
 {
-    
     [SerializeField] private float baseArmLHealth = 100;
     [SerializeField] private float armLHealthCurrent;
-
-    private string armLID = "ArmL";
     private bool armLState = true;
-    private bool validTarget = false;
     // Start is called before the first frame update
     void Start()
     {    
@@ -20,14 +15,13 @@ public class armLHealth : MonoBehaviour
 
     private void resetHealth()
     {
+        // Initialise the player's limb current health
         armLHealthCurrent = baseArmLHealth;
     }
 
     private void OnEnable()
     {
-        
         baseHealth.partDamage += takeLArmDamage;
-        baseHealth.partName += checkValidTarget;
     }
 
     private void onDisable()
@@ -36,21 +30,8 @@ public class armLHealth : MonoBehaviour
     }
     // Update is called once per frame
 
-    private void checkValidTarget(string targetPart)
+    public void takeLArmDamage(float armL)
     {
-        if (String.Equals(armLID, targetPart))
-            validTarget = true;
+        armLHealthCurrent -= armL;
     }
-
-    private void takeLArmDamage(float armL)
-    {
-        
-        if (validTarget == true)
-        {
-            armLHealthCurrent -= armL;
-            validTarget = false;
-        }
-            
-    }
-    
 }
