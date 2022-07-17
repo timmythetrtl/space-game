@@ -20,6 +20,11 @@ public class baseHealth : MonoBehaviour
     public static event Action<float> headDamage;
     public static event Action<float> torsoDamage;
 
+    void Start()
+    {
+        mustUpdate = false;
+    }
+
     #endregion
 
     #region Initialisation methods
@@ -50,7 +55,7 @@ public class baseHealth : MonoBehaviour
         }
     }
 
-    public void TakeDamage(string bodyPart, float damageAmount, float limbDamage)
+    public void TakeDamage(string bodyPart, string damageType, int armorClass, float damageAmount, float limbDamage)
     {
 
         if (damageAmount <= 0)
@@ -96,7 +101,7 @@ public class baseHealth : MonoBehaviour
         }
          
           
-          if (health <= 0)
+          if (health <= -400)
         {
             Die();// Kill the player
         }
@@ -110,5 +115,16 @@ public class baseHealth : MonoBehaviour
     }
     #endregion
 
+    void Update()
+    {
+        if (healthCurrent <= -100 and >= -199)
+        {
+            Random random = new Random();
+            int randomNumber = random.Next(0, 100);
+                if (randomNumber <= 25)
+                    Die();
+        }
     }
+
+}
 
