@@ -8,7 +8,7 @@ public class baseHealth : MonoBehaviour
 {
 
     #region Properties
-    [SerializeField] private float health= 100; 
+    [SerializeField] private float health = -100; 
     private float healthCurrent;
 
     public static event Action playerDeath;
@@ -37,7 +37,7 @@ public class baseHealth : MonoBehaviour
         // Initialise the player's current health
         healthCurrent = health;
     }
-
+ 
     #endregion
 
     #region Gameplay methods
@@ -95,13 +95,6 @@ public class baseHealth : MonoBehaviour
                 print("ERROR: NONEXISTENT BODY PART");
                 break;
         }
-         
-          
-          if (health <= 0)
-        {
-            Die();// Kill the player
-        }
-
     }
 
     public void Die()
@@ -110,6 +103,7 @@ public class baseHealth : MonoBehaviour
         playerDeath?.Invoke();
     }
     #endregion
+
 
     }
 
