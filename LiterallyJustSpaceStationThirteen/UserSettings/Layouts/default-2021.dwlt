@@ -20,6 +20,7 @@ MonoBehaviour:
     width: 2544
     height: 1341
   m_ShowMode: 4
+<<<<<<< Updated upstream
   m_Title: Scene
 =======
     x: 0
@@ -28,6 +29,9 @@ MonoBehaviour:
     height: 1357
   m_ShowMode: 4
   m_Title: Project
+>>>>>>> Stashed changes
+=======
+  m_Title: Hierarchy
 >>>>>>> Stashed changes
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 300}
@@ -58,6 +62,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
+<<<<<<< Updated upstream
   controlID: 53
 =======
     width: 2560
@@ -66,6 +71,9 @@ MonoBehaviour:
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
   controlID: 158
+>>>>>>> Stashed changes
+=======
+  controlID: 177
 >>>>>>> Stashed changes
 --- !u!114 &3
 MonoBehaviour:
@@ -141,7 +149,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ProjectBrowser
+  m_Name: ConsoleWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -151,12 +159,13 @@ MonoBehaviour:
     y: 765
     width: 1943
     height: 526
-  m_MinSize: {x: 231, y: 271}
-  m_MaxSize: {x: 10001, y: 10021}
-  m_ActualView: {fileID: 12}
+  m_MinSize: {x: 101, y: 121}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 12}
   - {fileID: 17}
+<<<<<<< Updated upstream
 =======
     y: 791
     width: 2042
@@ -170,6 +179,10 @@ MonoBehaviour:
 >>>>>>> Stashed changes
   m_Selected: 0
   m_LastSelected: 1
+=======
+  m_Selected: 1
+  m_LastSelected: 0
+>>>>>>> Stashed changes
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -280,6 +293,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
+<<<<<<< Updated upstream
   controlID: 94
 =======
     width: 2042
@@ -288,6 +302,9 @@ MonoBehaviour:
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
   controlID: 144
+>>>>>>> Stashed changes
+=======
+  controlID: 203
 >>>>>>> Stashed changes
 --- !u!114 &10
 MonoBehaviour:
@@ -314,6 +331,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
+<<<<<<< Updated upstream
   controlID: 34
 =======
     width: 2042
@@ -322,6 +340,9 @@ MonoBehaviour:
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
   controlID: 145
+>>>>>>> Stashed changes
+=======
+  controlID: 204
 >>>>>>> Stashed changes
 --- !u!114 &11
 MonoBehaviour:
@@ -431,11 +452,15 @@ MonoBehaviour:
 <<<<<<< Updated upstream
     m_SelectedIDs: 01ca9a3b
     m_LastClickedID: 1000000001
+<<<<<<< Updated upstream
     m_ExpandedIDs: 00000000264e00004e4e000000ca9a3bffffff7f
 =======
     m_SelectedIDs: ea4c0000
     m_LastClickedID: 19690
     m_ExpandedIDs: 00000000e44c0000ea4c000000ca9a3bffffff7f
+>>>>>>> Stashed changes
+=======
+    m_ExpandedIDs: 00000000e44c000000ca9a3bffffff7f
 >>>>>>> Stashed changes
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -465,7 +490,11 @@ MonoBehaviour:
     m_SelectedIDs: 
     m_LastClickedID: 0
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     m_ExpandedIDs: 00000000264e0000
+=======
+    m_ExpandedIDs: 00000000e44c000000ca9a3bffffff7f
+>>>>>>> Stashed changes
 =======
     m_ExpandedIDs: 00000000e44c000000ca9a3bffffff7f
 >>>>>>> Stashed changes
@@ -495,7 +524,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -520,7 +549,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 0}
+    m_ScrollPosition: {x: 0, y: 32}
     m_GridSize: 64
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 207
@@ -613,9 +642,13 @@ MonoBehaviour:
       m_SelectedIDs: 
       m_LastClickedID: 0
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       m_ExpandedIDs: 38fbffff
 =======
       m_ExpandedIDs: b2faffff
+>>>>>>> Stashed changes
+=======
+      m_ExpandedIDs: b0faffff
 >>>>>>> Stashed changes
       m_RenameOverlay:
         m_UserAcceptedRename: 0
@@ -927,7 +960,7 @@ MonoBehaviour:
   m_Size:
     m_Target: 6.8168063
     speed: 2
-    m_Value: 6.5232596
+    m_Value: 6.8168063
   m_Ortho:
     m_Target: 0
     speed: 2
