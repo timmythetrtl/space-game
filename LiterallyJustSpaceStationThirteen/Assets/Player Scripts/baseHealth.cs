@@ -8,8 +8,8 @@ public class baseHealth : MonoBehaviour
 {
 
     #region Properties
-    [SerializeField] private float startingHealth = 100; 
-    [SerializeField] private float healthCurrent;
+    [SerializeField] public float startingHealth = 100; 
+    [SerializeField] public float healthCurrent;
 
     public static event Action hardIncap;
     public static event Action softIncap;

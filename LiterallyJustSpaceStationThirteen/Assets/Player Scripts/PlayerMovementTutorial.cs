@@ -17,6 +17,10 @@ public class PlayerMovementTutorial : MonoBehaviour
     public float airMultiplier;
     bool readyToJump;
 
+    [Header("Stamina")]
+    public float maxStamina;
+    public float curStamina;
+
     [Header("Crouching")]
     public float crouchSpeed;
     public float crouchYScale;
@@ -121,18 +125,25 @@ public class PlayerMovementTutorial : MonoBehaviour
         {
             state = MovementState.crouching;
             moveSpeed = crouchSpeed;
+            StopCoroutine(DepleteStamina());
+            StartCoroutine(RegenStamina());
         }
 
-        if(grounded && Input.GetKey(sprintKey))
+        if(grounded && Input.GetKey(sprintKey) && curStamina>0)
         {
             state = MovementState.sprinting;
             moveSpeed = sprintSpeed;
+            StartCoroutine(DepleteStamina());
+
+
         }
 
         else if (grounded)
         {
             state = MovementState.walking;
             moveSpeed = walkSpeed;
+            StopCoroutine(DepleteStamina());
+            StartCoroutine(RegenStamina());
         }
         else
         {
@@ -176,5 +187,26 @@ public class PlayerMovementTutorial : MonoBehaviour
     private void ResetJump()
     {
         readyToJump = true;
+    }
+
+    private IEnumerator RegenStamina()
+    {
+        yield return new WaitForSeconds(2);
+
+        while(curStamina < maxStamina)
+        {
+            curStamina += maxStamina / 200;
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+
+    private IEnumerator DepleteStamina()
+    {
+        yield return new WaitForSeconds(1);
+        while (curStamina > 0)
+        {
+            curStamina -= maxStamina / 200;
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 }
