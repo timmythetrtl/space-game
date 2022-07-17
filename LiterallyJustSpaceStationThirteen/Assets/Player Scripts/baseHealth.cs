@@ -8,9 +8,13 @@ public class baseHealth : MonoBehaviour
 {
 
     #region Properties
-    [SerializeField] private float health = -100; 
-    private float healthCurrent;
+    [SerializeField] private float startingHealth = 100; 
+    [SerializeField] private float healthCurrent;
 
+    public static event Action hardIncap;
+    public static event Action softIncap;
+    public static event Action softIncapOff;
+    public static event Action hardIncapOff;
     public static event Action playerDeath;
     public static event Action<float> legLDamage;
     public static event Action<float> legRDamage;
@@ -35,20 +39,27 @@ public class baseHealth : MonoBehaviour
     private void resetHealth()
     {
         // Initialise the player's current health
-        healthCurrent = health;
+        healthCurrent = startingHealth;
     }
  
     #endregion
 
     #region Gameplay methods
-    public void Heal(int heal_Amount)
+
+    public void Heal(int healAmount)
     {
-        healthCurrent += heal_Amount;
-        if (healthCurrent > health)
+        healthCurrent += healAmount;
+        if (healthCurrent > startingHealth)
         {
             // Reset the player's current health
             resetHealth();
         }
+    }
+
+    public void Die()
+    {
+        Destroy(this.gameObject);
+        playerDeath?.Invoke();
     }
 
     public void TakeDamage(string bodyPart, float damageAmount, float limbDamage)
@@ -95,15 +106,42 @@ public class baseHealth : MonoBehaviour
                 print("ERROR: NONEXISTENT BODY PART");
                 break;
         }
+
+            if (healthCurrent <= 0 && healthCurrent > -50)
+            {
+                hardIncapOff?.Invoke();
+                softIncap?.Invoke();
+            }
+            else if (healthCurrent <= -50 && healthCurrent > -100)
+                hardIncap?.Invoke();
+            else if (healthCurrent <= -100)
+                Die();
+        
     }
 
-    public void Die()
-    {
-        Destroy(this.gameObject);
-        playerDeath?.Invoke();
-    }
+    
     #endregion
 
-
+    void Update()
+    {
+        
+        if (healthCurrent <= 0 && healthCurrent > -50)
+        {
+            hardIncapOff?.Invoke();
+            softIncap?.Invoke();
+            print ("Player is soft incapacitated!");
+        }
+        else if (healthCurrent <= -50 && healthCurrent > -100)
+        {
+           hardIncap?.Invoke();
+           print ("Player is hard incapacitated!");
+        }
+        else if (healthCurrent <= -100)
+        {
+            Die();
+            print("Player Died!");
+        }   
+        
+    }
     }
 
