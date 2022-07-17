@@ -16,9 +16,14 @@ public class baseHealth : MonoBehaviour
     public static event Action softIncapOff;
     public static event Action hardIncapOff;
     public static event Action playerDeath;
-    public static event Action<float> partDamage;
-    public static event Action<string> partName;
-
+    public static event Action<float> legLDamage;
+    public static event Action<float> legRDamage;
+    public static event Action<float> eyeLDamage;
+    public static event Action<float> eyeRDamage;
+    public static event Action<float> armLDamage;
+    public static event Action<float> armRDamage;
+    public static event Action<float> headDamage;
+    public static event Action<float> torsoDamage;
 
     #endregion
 
@@ -57,30 +62,60 @@ public class baseHealth : MonoBehaviour
         playerDeath?.Invoke();
     }
 
-    public void TakeDamage(string bodyPart, float damageAmount)
+    public void TakeDamage(string bodyPart, float damageAmount, float limbDamage)
     {
-        partName?.Invoke(bodyPart);
 
-        if (damageAmount < 0)
-        {
+        if (damageAmount <= 0)
             throw new ArgumentOutOfRangeException("Invalid Damage amount specified: " + damageAmount );
-        }
-        else
-        {
-            healthCurrent -= damageAmount;
-            partDamage?.Invoke(damageAmount);
-        }
-    
 
-        if (healthCurrent <= 0 && healthCurrent > -50)
+        switch(bodyPart)
         {
-            hardIncapOff?.Invoke();
-            softIncap?.Invoke();
+            case "legL":
+                legLDamage?.Invoke(limbDamage);
+                healthCurrent -= damageAmount;
+                break;
+            case "legR":
+                healthCurrent -= damageAmount;
+                legLDamage.Invoke(limbDamage);
+                break;
+            case "eyeL":
+                healthCurrent -= damageAmount;
+                eyeLDamage?.Invoke(limbDamage);
+                break;
+            case "eyeR":
+                healthCurrent -= damageAmount;
+                eyeRDamage?.Invoke(limbDamage);
+                break;
+            case "armL":
+                healthCurrent -= damageAmount;
+                armLDamage?.Invoke(limbDamage);
+                break;
+            case "armR":
+                healthCurrent -= damageAmount;
+                armRDamage?.Invoke(limbDamage);
+                break;
+            case "head":
+                healthCurrent -= damageAmount;
+                headDamage?.Invoke(limbDamage);
+                break;
+            case "torso":
+                healthCurrent -= damageAmount;
+                torsoDamage?.Invoke(limbDamage);
+                break;
+            default:
+                print("ERROR: NONEXISTENT BODY PART");
+                break;
         }
-        else if (healthCurrent <= -50 && healthCurrent > -100)
-            hardIncap?.Invoke();
-        else if (healthCurrent <= -100)
-            Die();
+
+            if (healthCurrent <= 0 && healthCurrent > -50)
+            {
+                hardIncapOff?.Invoke();
+                softIncap?.Invoke();
+            }
+            else if (healthCurrent <= -50 && healthCurrent > -100)
+                hardIncap?.Invoke();
+            else if (healthCurrent <= -100)
+                Die();
         
     }
 
@@ -89,7 +124,7 @@ public class baseHealth : MonoBehaviour
 
     void Update()
     {
-        //this is for testing
+        
         if (healthCurrent <= 0 && healthCurrent > -50)
         {
             hardIncapOff?.Invoke();
@@ -108,5 +143,5 @@ public class baseHealth : MonoBehaviour
         }   
         
     }
-}
+    }
 

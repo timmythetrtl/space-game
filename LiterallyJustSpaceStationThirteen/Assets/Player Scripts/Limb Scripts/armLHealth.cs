@@ -5,7 +5,7 @@ using UnityEngine;
 public class armLHealth : MonoBehaviour
 {
     [SerializeField] private float baseArmLHealth = 100;
-    [SerializeField] private float armLHealthCurrent;
+    private float armLHealthCurrent;
     private bool armLState = true;
     // Start is called before the first frame update
     void Start()
@@ -21,12 +21,12 @@ public class armLHealth : MonoBehaviour
 
     private void OnEnable()
     {
-        baseHealth.partDamage += takeLArmDamage;
+        baseHealth.armLDamage += takeLArmDamage;
     }
 
     private void onDisable()
     {
-        baseHealth.partDamage -= takeLArmDamage;
+        baseHealth.armLDamage -= takeLArmDamage;
     }
     // Update is called once per frame
 

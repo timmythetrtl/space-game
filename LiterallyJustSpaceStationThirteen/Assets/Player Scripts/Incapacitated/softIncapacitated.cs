@@ -4,23 +4,15 @@ using UnityEngine;
 
 public class softIncapacitated : MonoBehaviour
 {
-
- private void OnEnable()
+    // Start is called before the first frame update
+    void Start()
     {
         
-        baseHealth.softIncap += enableSoftIncap;
-
     }
 
-    private void onDisable()
-    {
-        baseHealth.softIncap -= enableSoftIncap;
-    }
     // Update is called once per frame
-
-    private void enableSoftIncap()
+    void Update()
     {
         
     }
-    
 }
