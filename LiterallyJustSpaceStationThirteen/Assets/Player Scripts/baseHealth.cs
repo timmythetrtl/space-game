@@ -111,13 +111,5 @@ public class baseHealth : MonoBehaviour
     }
     #endregion
 
-    void Update()
-    {
-        if (healthCurrent <= -100 && healthCurrent>= -199) 
-        {
-            int randomInt = Random.Range(0, 100);
-            if (randomInt <= 25)
-                Die();
-        }
     }
-}
+
