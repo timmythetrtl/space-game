@@ -7,8 +7,11 @@ public class legLHealth : MonoBehaviour
 {
     
     [SerializeField] private float baseLegLHealth = 100;
-    private float legLHealthCurrent;
+    [SerializeField] private float legLHealthCurrent;
+
+    private string legLID = "LegL";
     private bool legLState = true;
+    private bool validTarget = false;
     // Start is called before the first frame update
     void Start()
     {    
@@ -24,24 +27,31 @@ public class legLHealth : MonoBehaviour
     private void OnEnable()
     {
         
-        baseHealth.legLDamage += takeLLegDamage;
+        baseHealth.partDamage += takeLLegDamage;
+        baseHealth.partName += checkValidTarget;
     }
 
     private void onDisable()
     {
-        baseHealth.legLDamage -= takeLLegDamage;
+        baseHealth.partDamage -= takeLLegDamage;
     }
     // Update is called once per frame
-    void Update()
+
+    private void checkValidTarget(string targetPart)
     {
-    
+        if (String.Equals(legLID, targetPart))
+            validTarget = true;
     }
-    public void takeLLegDamage(float legL)
+
+    private void takeLLegDamage(float legL)
     {
         
-        if (legL <= 0)
-            return;
-        legLHealthCurrent -= legL;
+        if (validTarget = true)
+        {
+            legLHealthCurrent -= legL;
+            validTarget = false;
+        }
+            
     }
     
 
