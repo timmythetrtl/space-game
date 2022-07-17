@@ -5,38 +5,26 @@ using UnityEngine;
 
 public class legLHealth : MonoBehaviour
 {
+<<<<<<< HEAD
     
     [SerializeField] private float baseLegLHealth = 100;
     private float legLHealthCurrent;
     private bool legLState = true;
+=======
+>>>>>>> parent of 8f7cd36 (merge)
     // Start is called before the first frame update
     void Start()
-    {    
-        resetHealth();
+    {
+        
     }
 
-    private void resetHealth()
-    {
-        // Initialise the player's limb current health
-        legLHealthCurrent = baseLegLHealth;
-    }
-
-    private void OnEnable()
-    {
-        baseHealth.legLDamage += takeLLegDamage;
-    }
-
-    private void onDisable()
-    {
-        baseHealth.legLDamage -= takeLLegDamage;
-    }
     // Update is called once per frame
-
-    public void takeLLegDamage(float legL)
+    void Update()
     {
-        if (legL <= 0)
-            return;
-        legLHealthCurrent -= legL;
+        
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 8f7cd36 (merge)
 }

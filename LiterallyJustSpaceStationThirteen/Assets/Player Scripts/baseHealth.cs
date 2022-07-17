@@ -51,7 +51,7 @@ public class baseHealth : MonoBehaviour
         }
     }
 
-    public void TakeDamage(string bodyPart, string damageType, int armorClass, float damageAmount, float limbDamage)
+    public void TakeDamage(string bodyPart, float damageAmount, float limbDamage)
     {
 
         if (damageAmount <= 0)
@@ -97,7 +97,7 @@ public class baseHealth : MonoBehaviour
         }
          
           
-          if (health <= -400)
+          if (health <= 0)
         {
             Die();// Kill the player
         }
@@ -111,6 +111,7 @@ public class baseHealth : MonoBehaviour
     }
     #endregion
 
+<<<<<<< HEAD
     void Update()
     {
         if (healthCurrent <= -100 && healthCurrent>= -199) 
@@ -119,7 +120,7 @@ public class baseHealth : MonoBehaviour
             if (randomInt <= 25)
                 Die();
         }
+=======
+>>>>>>> parent of 8f7cd36 (merge)
     }
-
-}
 
