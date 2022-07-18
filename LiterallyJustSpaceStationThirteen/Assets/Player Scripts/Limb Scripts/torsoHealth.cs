@@ -9,7 +9,7 @@ public class torsoHealth : MonoBehaviour
     [SerializeField] private float baseTorsoHealth = 100;
     [SerializeField] private float torsoHealthCurrent;
 
-    private string torsoID = "Torso";
+    private string torsoID = "torso";
     private bool torsoState = true;
     private bool validTarget = false;
     // Start is called before the first frame update
