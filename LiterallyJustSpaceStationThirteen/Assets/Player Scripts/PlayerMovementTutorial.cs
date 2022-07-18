@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,10 @@ using TMPro;
 
 public class PlayerMovementTutorial : MonoBehaviour
 {
+
+    public static event Action sprinting;
+    public static event Action notSprinting;
+
     [Header("Movement")]
     private float moveSpeed;
     public float walkSpeed;
@@ -16,10 +21,6 @@ public class PlayerMovementTutorial : MonoBehaviour
     public float jumpCooldown;
     public float airMultiplier;
     bool readyToJump;
-
-    [Header("Stamina")]
-    public float maxStamina;
-    public float curStamina;
 
     [Header("Crouching")]
     public float crouchSpeed;
@@ -40,6 +41,8 @@ public class PlayerMovementTutorial : MonoBehaviour
 
     float horizontalInput;
     float verticalInput;
+
+    bool depleted = false;
 
     Vector3 moveDirection;
 
@@ -66,22 +69,14 @@ public class PlayerMovementTutorial : MonoBehaviour
         startYScale = transform.localScale.y;
     }
 
-    private void Update()
+    private void OnEnable()
     {
+        Stamina.zeroStamina += noStamina;
+    }
 
-
-        // ground check
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, whatIsGround);
-
-        MyInput();
-        SpeedControl();
-        StateHandler();
-
-        // handle drag
-        if (grounded)
-            rb.drag = groundDrag;
-        else
-            rb.drag = 0;
+    private void onDisable()
+    {
+        Stamina.zeroStamina -= noStamina;
     }
 
     private void FixedUpdate()
@@ -116,22 +111,27 @@ public class PlayerMovementTutorial : MonoBehaviour
 
     }
 
+    private void noStamina()
+    {
+        depleted = true;
+    }
+
+
     private void StateHandler()
     {
         if (Input.GetKey(crouchKey))
         {
             state = MovementState.crouching;
             moveSpeed = crouchSpeed;
-            StopCoroutine(DepleteStamina());
-            StartCoroutine(RegenStamina());
+            notSprinting?.Invoke();
+            depleted = false;
         }
 
-        if(grounded && Input.GetKey(sprintKey) && curStamina>0)
+        else if(grounded && Input.GetKey(sprintKey) && !depleted && Input.GetKey(KeyCode.W))
         {
             state = MovementState.sprinting;
             moveSpeed = sprintSpeed;
-            StartCoroutine(DepleteStamina());
-
+            sprinting?.Invoke();
 
         }
 
@@ -139,12 +139,14 @@ public class PlayerMovementTutorial : MonoBehaviour
         {
             state = MovementState.walking;
             moveSpeed = walkSpeed;
-            StopCoroutine(DepleteStamina());
-            StartCoroutine(RegenStamina());
+            notSprinting?.Invoke();
+            depleted = false;
         }
         else
         {
             state = MovementState.air;
+            notSprinting?.Invoke();
+            depleted = false;
         }
     }
 
@@ -186,24 +188,20 @@ public class PlayerMovementTutorial : MonoBehaviour
         readyToJump = true;
     }
 
-    private IEnumerator RegenStamina()
+    private void Update()
     {
-        yield return new WaitForSeconds(2);
 
-        while(curStamina < maxStamina)
-        {
-            curStamina += maxStamina / 200;
-            yield return new WaitForSeconds(0.1f);
-        }
-    }
+        // ground check
+        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, whatIsGround);
 
-    private IEnumerator DepleteStamina()
-    {
-        yield return new WaitForSeconds(1);
-        while (curStamina > 0)
-        {
-            curStamina -= maxStamina / 200;
-            yield return new WaitForSeconds(0.1f);
-        }
+        MyInput();
+        SpeedControl();
+        StateHandler();
+
+        // handle drag
+        if (grounded)
+            rb.drag = groundDrag;
+        else
+            rb.drag = 0;
     }
 }

@@ -10,7 +10,7 @@ public class damagePlayer : MonoBehaviour
     
     void Update()
     {
-        if (Input.GetKey(KeyCode.P))
+        if (Input.GetKeyUp(KeyCode.P))
         {
             GetComponent<baseHealth>().TakeDamage("torso", 10);
         }
