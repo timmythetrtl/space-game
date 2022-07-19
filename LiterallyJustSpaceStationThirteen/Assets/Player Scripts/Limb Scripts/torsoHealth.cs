@@ -33,6 +33,7 @@ public class torsoHealth : MonoBehaviour
     private void onDisable()
     {
         baseHealth.partDamage -= takeTorsoDamage;
+        baseHealth.partName -= checkValidTarget;
     }
     // Update is called once per frame
 

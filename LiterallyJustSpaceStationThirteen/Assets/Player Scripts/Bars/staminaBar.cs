@@ -8,18 +8,18 @@ public class staminaBar : MonoBehaviour
     private Image StaminaBar;
     public float CurrentStamina;
     private float MaxStamina = 100f;
-    PlayerMovementTutorial Player;
+    Stamina stamina;
 
     void Start()
     {
         StaminaBar = GetComponent<Image>();
-        Player = FindObjectOfType<PlayerMovementTutorial>();
+        stamina = FindObjectOfType<Stamina>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        CurrentStamina = Player.curStamina;
+        CurrentStamina = stamina.staminaCurrent;
         StaminaBar.fillAmount = CurrentStamina / MaxStamina;
     }
 }
