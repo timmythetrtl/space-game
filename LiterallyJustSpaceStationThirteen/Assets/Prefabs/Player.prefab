@@ -410,8 +410,6 @@ MonoBehaviour:
   jumpForce: 12
   jumpCooldown: 0.25
   airMultiplier: 0.4
-  maxStamina: 0
-  curStamina: 0
   crouchSpeed: 0
   crouchYScale: 0
   jumpKey: 32
